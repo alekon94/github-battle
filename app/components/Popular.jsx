@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Table from './Table';
 import { fetchPopularRepos } from '../utils/api';
+import Look from './Children';
 function LanguagesNav({ selected, onUpdateLanguage }) {
     const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python']
 
@@ -59,6 +60,7 @@ export default class Popular extends React.Component {
             <main className="stack main-stack animate-in">
                 <div className='split'>
                 <h1>Popular</h1>
+{/* <Look/> */}
                 <LanguagesNav
                     selected={selectedLanguage}
                     onUpdateLanguage={this.updateLanguage}

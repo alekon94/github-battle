@@ -1,41 +1,49 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import { render } from 'react-dom'
+// import { render } from 'react-dom'
+// import withHover from './withHover';
+import Hover from './Hover';
 const container = {
     position: "relative",
     display: "flex",
 };
-   export default class Tooltip extends React.Component {
-        constructor(props) {
-            super(props)
+export default function Tooltip({ children, element }) {
 
-            this.state = {
-                hovering: false
-            }
-
-            this.mouseOver = this.mouseOver.bind(this)
-            this.mouseOut = this.mouseOut.bind(this)
-        }
-        mouseOver() {
-            this.setState({ hovering: true })
-        }
-        mouseOut() {
-            this.setState({ hovering: false })
-        }
-        render() {
-           const {hovering} = this.state
-           const {children, element} = this.props
-
-            return (
-                <div
-                    onMouseOver={this.mouseOver}
-                    onMouseOut={this.mouseOut}
-                    style={container} >
+    return (
+        <Hover>
+            {(hovering) => {
+                return (
+                    <div style={container} >
                         {hovering == true && element}
                         {children}
-                </div>
-            );
-        }
-    };
+                    </div>
+                )
+            }}
+        </Hover>
 
+    );
 
+};
+Tooltip.propTypes = {
+    children: PropTypes.node.isRequired,
+    element: PropTypes.node.isRequired
+}
+// class Tooltip extends React.Component {
+
+//     render() {
+//        const {children, element, hovering} = this.props
+
+//         return (
+//             <div style={container} >
+//                     {hovering == true && element}
+//                     {children}
+//             </div>
+//         );
+//     }
+// };
+// Tooltip.propTypes= {
+// children: PropTypes.node.isRequired,
+// element: PropTypes.node.isRequired
+// }
+
+// export default withHover(Tooltip)
