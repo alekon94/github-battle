@@ -9,11 +9,8 @@ const styles = {
     textAlign: "center",
 };
 class Delayed extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            wait: false
-        }
+    state = {
+        wait: false
     }
     componentDidMount() {
         this.timeout = window.setTimeout(() => {
@@ -38,11 +35,8 @@ Delayed.defaultProps = {
 }
 
 export default class Loading extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            content: props.text
-        }
+    state = {
+        content: this.props.text
     }
     componentDidMount() {
         const { speed, text } = this.props
